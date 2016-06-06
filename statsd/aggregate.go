@@ -82,6 +82,7 @@ func ProcessTiming(points *[]Point) {
 				"stddev":        stddev,
 				"upper":         c.Upper,
 				"lower":         c.Lower,
+				"count":         c.Count,
 				"percentile_90": percentile_90,
 			},
 		})

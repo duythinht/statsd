@@ -11,11 +11,6 @@ listen = ":8127"
 default_db = "statsd"
 
 telemetry {
-  db   = "nomad"
-  keys = ["^test.(?P<bucket>hello).(?P<name>[^ ]*)$", "def"]
-}
-
-telemetry {
-  db   = "consul"
-  keys = ["123", "456"]
+  db   = "response"
+  keys = ["^response.(?P<service>[^.]+).(?P<method>[A-Z]+).(?P<url>[^.]+).(?P<status>\\d+)"]
 }

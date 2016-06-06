@@ -17,7 +17,7 @@ type Metric struct {
 	SampleRate float64
 }
 
-var re = regexp.MustCompile("\\d+")
+var re = regexp.MustCompile("/\\d+")
 
 func ParseLine(line []byte) (*Metric, error) {
 	bits := bytes.Split(line, []byte(VAL_SEPARATOR))
@@ -27,7 +27,7 @@ func ParseLine(line []byte) (*Metric, error) {
 	}
 
 	key, rest := bits[0], bits[1]
-	key = re.ReplaceAll(key, []byte("{number}"))
+	key = re.ReplaceAll(key, []byte("/{number}"))
 
 	segments := bytes.Split(rest, []byte(TYPE_SEPARATOR))
 
