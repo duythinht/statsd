@@ -3,11 +3,13 @@ package main
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"github.com/duythinht/statsd/config"
 	"github.com/duythinht/statsd/influx"
 	"github.com/duythinht/statsd/statsd"
 	"log"
 	"net"
+	"os"
 	"time"
 )
 
@@ -15,8 +17,14 @@ const BUFFER_SIZE = 65536
 
 func init() {
 	var configFile string
+	var version bool
+	flag.BoolVar(&version, "version", false, "Check version")
 	flag.StringVar(&configFile, "config", "/etc/statsd.hcl", "Need a config")
 	flag.Parse()
+	if version {
+		fmt.Println("v" + VERSION)
+		os.Exit(0)
+	}
 	config.Load(configFile)
 }
 
